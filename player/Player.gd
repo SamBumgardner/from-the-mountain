@@ -1,6 +1,7 @@
-extends Sprite2D
+class_name Player extends Sprite2D
 
 signal energy_changed(new_value:float)
+signal character_finished(this_player:Player)
 
 const MAX_ENERGY : float = 100
 
@@ -16,19 +17,25 @@ func _ready():
 	current_coords = world_map.local_to_map(world_map.to_local(global_position))
 	pass
 
+func force_change_position(coordinates : Vector2i):
+	var tile : Tile = world_map.get_tile(coordinates)
+	if tile != null:
+		global_position = tile.global_position
+		current_coords = coordinates
+
 func move(distance : Vector2i):
 	var tile : Tile = world_map.get_tile(current_coords + distance)
 
 	if tile != null:
-		# Check if player has enough energy
 		if current_energy > 0:
 			current_energy -= tile.movement_in_cost
-			# move player to found tile
 			global_position = tile.global_position
 			current_coords = current_coords + distance
+			#resolve any additional results of moving into tile.
 		
 		if current_energy <= 0:
 			print("character is exhuasted! end game now")
+			character_finished.emit(self)
 
 func _input(event):
 	if event.is_action_pressed("player_left"):
