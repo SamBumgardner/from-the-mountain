@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name Tile extends Sprite2D
 
 @export var color : Color = Color.LIGHT_BLUE
 @export var amount_remaining : float = 1
