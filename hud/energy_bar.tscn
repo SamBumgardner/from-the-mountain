@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmjep1goihyck"]
+
+[ext_resource type="Theme" uid="uid://84jx4t86hwwa" path="res://art/tile_theme.tres" id="1_iv211"]
+[ext_resource type="Script" path="res://hud/energy_bar.gd" id="2_20agh"]
+[ext_resource type="Texture2D" uid="uid://chxjtdgkxhk21" path="res://art/energy_particle.png" id="3_2l082"]
+
+[sub_resource type="Gradient" id="Gradient_5jjpf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="EnergyBar" type="ProgressBar"]
+custom_minimum_size = Vector2(32, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_iv211")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("2_20agh")
+
+[node name="EnergySpendParticle" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_2l082")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+angular_velocity_max = 100.0
+damping_max = 100.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_5jjpf")
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]
