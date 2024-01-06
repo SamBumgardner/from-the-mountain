@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dwo0cssrmpnaj"]
+
+[ext_resource type="FontFile" uid="uid://1tp2c024q3tk" path="res://art/GENÉRICA PRIMITIVA #01.ttf" id="1_ecwmv"]
+
+[resource]
+default_font = ExtResource("1_ecwmv")
+default_font_size = 128

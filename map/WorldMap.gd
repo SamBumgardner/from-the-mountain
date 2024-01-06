@@ -14,3 +14,8 @@ func get_tile(requested_coords : Vector2i) -> Tile:
 func _on_child_entered_tree(child):
 	var child_coord: Vector2i = local_to_map(to_local(child.global_position))
 	set_cell(0, child_coord, 0, Vector2i.ZERO, child.get_index())
+
+
+func _on_child_exiting_tree(node):
+	print("losing a child!")
+	pass # Replace with function body.
