@@ -6,3 +6,9 @@
 [node name="Player" type="Sprite2D"]
 texture = ExtResource("1_hgkp2")
 script = ExtResource("2_fd4ee")
+
+[node name="GameEndDelay" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="GameEndDelay" to="." method="_on_game_end_delay_timeout"]

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://2xks7cbp74xs"]
+[gd_scene load_steps=3 format=3 uid="uid://2xks7cbp74xs"]
 
 [ext_resource type="Script" path="res://gameplay/gameplay.gd" id="1_8nwe7"]
+[ext_resource type="PackedScene" uid="uid://bmjc7okpnhawi" path="res://hud/end_of_game_sequence.tscn" id="2_02pd7"]
 
 [node name="Gameplay" type="Node"]
 script = ExtResource("1_8nwe7")
+
+[node name="EndOfGameSequence" parent="." instance=ExtResource("2_02pd7")]

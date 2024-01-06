@@ -41,3 +41,4 @@ layout_mode = 2
 [connection signal="child_exiting_tree" from="TileMap" to="TileMap" method="_on_child_exiting_tree"]
 [connection signal="character_finished" from="Player" to="." method="_on_player_character_finished"]
 [connection signal="energy_changed" from="Player" to="HUD/HBoxContainer/EnergyBar" method="_on_player_energy_changed"]
+[connection signal="start_end_of_game_sequence" from="Player" to="." method="_on_player_start_end_of_game_sequence"]
