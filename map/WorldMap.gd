@@ -5,8 +5,10 @@ func _ready():
 
 func get_tile(requested_coords : Vector2i) -> Tile:
 	var child_index: int = get_cell_alternative_tile(0, requested_coords)
-	print(requested_coords)
-	return get_child(child_index)
+	if child_index >= 0:
+		return get_child(child_index)
+	else:
+		return null
 
 
 func _on_child_entered_tree(child):
