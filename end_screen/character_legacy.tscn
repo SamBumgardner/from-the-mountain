@@ -11,6 +11,7 @@ fill_from = Vector2(0, 0.816239)
 fill_to = Vector2(0, 1)
 
 [node name="CharacterLegacy" type="TextureRect"]
+z_index = 1000
 custom_minimum_size = Vector2(1280, 720)
 texture = SubResource("GradientTexture2D_5io2h")
 script = ExtResource("1_daeym")
