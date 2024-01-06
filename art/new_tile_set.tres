@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c214hvweiervt"]
+
+[ext_resource type="Texture2D" uid="uid://d27fxg57bqib2" path="res://art/tilemap_tiles.png" id="1_00lax"]
+[ext_resource type="PackedScene" uid="uid://dctncigjejvr7" path="res://map/tile_variants/ForestTile.tscn" id="2_3qlt0"]
+[ext_resource type="PackedScene" uid="uid://cfxmjt0rqh6yl" path="res://map/tile_variants/MeadowTile.tscn" id="3_3wxdt"]
+[ext_resource type="PackedScene" uid="uid://c6mm8daverau" path="res://map/tile_variants/MountainTile.tscn" id="4_qj6tn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yuq5p"]
+texture = ExtResource("1_00lax")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ypwnk"]
+scenes/2/scene = ExtResource("2_3qlt0")
+scenes/3/scene = ExtResource("3_3wxdt")
+scenes/4/scene = ExtResource("4_qj6tn")
+
+[resource]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_yuq5p")
+sources/1 = SubResource("TileSetScenesCollectionSource_ypwnk")

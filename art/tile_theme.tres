@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://84jx4t86hwwa"]
+
+[ext_resource type="FontFile" uid="uid://1tp2c024q3tk" path="res://art/GENÉRICA PRIMITIVA #01.ttf" id="1_q42er"]
+
+[resource]
+default_font = ExtResource("1_q42er")
+default_font_size = 100
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 10

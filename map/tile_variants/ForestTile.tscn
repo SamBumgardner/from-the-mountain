@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dctncigjejvr7"]
+
+[ext_resource type="PackedScene" uid="uid://b7on8pxdgfw12" path="res://map/Tile.tscn" id="1_h22rb"]
+
+[node name="Tile" instance=ExtResource("1_h22rb")]
+modulate = Color(0, 0.521569, 0.227451, 1)
+color = Color(0, 0.521569, 0.227451, 1)
+amount_remaining = 0.95
+tile_text = "f"

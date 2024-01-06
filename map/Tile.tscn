@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7on8pxdgfw12"]
+
+[ext_resource type="Shader" path="res://map/Tile.gdshader" id="1_uumvo"]
+[ext_resource type="Texture2D" uid="uid://cclgdm0hiafs7" path="res://art/blank_tile.png" id="2_i84pk"]
+[ext_resource type="Theme" uid="uid://84jx4t86hwwa" path="res://art/tile_theme.tres" id="3_du81h"]
+[ext_resource type="Script" path="res://map/Tile.gd" id="3_ff047"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frkkh"]
+shader = ExtResource("1_uumvo")
+shader_parameter/mod_color = Vector4(0, 255, 0, 255)
+shader_parameter/remaining = 1.0
+shader_parameter/resolution = Vector2(10, 5)
+
+[node name="Tile" type="Sprite2D"]
+modulate = Color(0, 1, 0, 1)
+material = SubResource("ShaderMaterial_frkkh")
+texture = ExtResource("2_i84pk")
+script = ExtResource("3_ff047")
+
+[node name="label" type="Label" parent="."]
+self_modulate = Color(0.294118, 0.294118, 0.294118, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -144.0
+offset_right = -22.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_du81h")
+horizontal_alignment = 1
+vertical_alignment = 1
