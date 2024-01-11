@@ -6,4 +6,9 @@
 [node name="Gameplay" type="Node"]
 script = ExtResource("1_8nwe7")
 
-[node name="EndOfGameSequence" parent="." instance=ExtResource("2_02pd7")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="EndOfGameSequence" parent="CanvasLayer" instance=ExtResource("2_02pd7")]
+offset_right = 1280.0
+offset_bottom = 720.0

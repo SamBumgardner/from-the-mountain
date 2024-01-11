@@ -28,13 +28,12 @@ func _on_legacy_screen_ready():
 	pass
 
 func _on_legacy_screen_finished():
-	$EndOfGameSequence/AnimationPlayer.stop()
-	$EndOfGameSequence.visible = false
+	$CanvasLayer/EndOfGameSequence/AnimationPlayer.stop()
+	$CanvasLayer/EndOfGameSequence.visible = false
 	new_generation_begins.emit()
 	legacy_state.queue_free()
 	map_state.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_start_end_of_game_sequence(_reason:String):
-	
-	$EndOfGameSequence.visible = true
-	$EndOfGameSequence/AnimationPlayer.play("display_end_sequence")
+	$CanvasLayer/EndOfGameSequence.visible = true
+	$CanvasLayer/EndOfGameSequence/AnimationPlayer.play("display_end_sequence")

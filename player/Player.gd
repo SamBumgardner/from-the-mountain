@@ -9,6 +9,7 @@ const MAX_ENERGY : float = 100
 @export var world_map : WorldMap;
 
 var current_coords : Vector2i;
+var current_tile : Tile;
 var current_energy : float = MAX_ENERGY :
 	set(value):
 		current_energy = value
@@ -28,6 +29,7 @@ func force_change_position(coordinates : Vector2i):
 	var tile : Tile = world_map.get_tile(coordinates)
 	if tile != null:
 		global_position = tile.global_position
+		current_tile = tile
 		current_coords = coordinates
 
 func move(distance : Vector2i):
@@ -37,6 +39,7 @@ func move(distance : Vector2i):
 		if current_energy > 0:
 			current_energy -= tile.movement_in_cost
 			global_position = tile.global_position
+			current_tile = tile
 			current_coords = current_coords + distance
 			#resolve any additional results of moving into tile.
 		
@@ -46,15 +49,25 @@ func move(distance : Vector2i):
 			$GameEndDelay.start()
 			_game_ending = true
 
+func harvest():
+	if current_tile != null && current_tile.can_harvest:
+		var harvest_results = current_tile.harvest()
+		print(harvest_results)
+	else:
+		pass # play meep-merp sound
+
 func _input(event):
-	if event.is_action_pressed("player_left"):
-		move(Vector2i(-1, 0))
-	if event.is_action_pressed("player_right"):
-		move(Vector2i(1, 0))
-	if event.is_action_pressed("player_down"):
-		move(Vector2i(0,1))
-	if event.is_action_pressed("player_up"):
-		move(Vector2i(0,-1))
+	if !_game_ending:
+		if event.is_action_pressed("player_left"):
+			move(Vector2i(-1, 0))
+		if event.is_action_pressed("player_right"):
+			move(Vector2i(1, 0))
+		if event.is_action_pressed("player_down"):
+			move(Vector2i(0,1))
+		if event.is_action_pressed("player_up"):
+			move(Vector2i(0,-1))
+		if event.is_action_pressed("player_interact"):
+			harvest()
 
 func _on_game_end_delay_timeout():
 	character_finished.emit(self)
