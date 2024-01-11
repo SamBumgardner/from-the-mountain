@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1sijij4l4hsd"]
+[gd_scene load_steps=9 format=3 uid="uid://c1sijij4l4hsd"]
 
 [ext_resource type="Script" path="res://map/map.gd" id="1_ueog6"]
 [ext_resource type="TileSet" uid="uid://c214hvweiervt" path="res://art/new_tile_set.tres" id="2_jjxr8"]
@@ -7,8 +7,24 @@
 [ext_resource type="Theme" uid="uid://84jx4t86hwwa" path="res://art/tile_theme.tres" id="5_no80x"]
 [ext_resource type="PackedScene" uid="uid://dmjep1goihyck" path="res://hud/energy_bar.tscn" id="6_xpim0"]
 
+[sub_resource type="Gradient" id="Gradient_xtb3r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kf1vb"]
+gradient = SubResource("Gradient_xtb3r")
+
 [node name="Map" type="Node2D"]
 script = ExtResource("1_ueog6")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = SubResource("GradientTexture1D_kf1vb")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_jjxr8")
@@ -20,7 +36,9 @@ script = ExtResource("3_7e1u4")
 position = Vector2(320, 320)
 world_map = NodePath("../TileMap")
 
-[node name="HUD" type="MarginContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="MarginContainer" parent="CanvasLayer"]
 custom_minimum_size = Vector2(1280, 720)
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -28,17 +46,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("5_no80x")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="EnergyBar" parent="HUD/HBoxContainer" instance=ExtResource("6_xpim0")]
+[node name="EnergyBar" parent="CanvasLayer/HUD/HBoxContainer" instance=ExtResource("6_xpim0")]
 layout_mode = 2
 
 [connection signal="child_entered_tree" from="TileMap" to="TileMap" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="TileMap" to="TileMap" method="_on_child_exiting_tree"]
 [connection signal="character_finished" from="Player" to="." method="_on_player_character_finished"]
-[connection signal="energy_changed" from="Player" to="HUD/HBoxContainer/EnergyBar" method="_on_player_energy_changed"]
+[connection signal="energy_changed" from="Player" to="CanvasLayer/HUD/HBoxContainer/EnergyBar" method="_on_player_energy_changed"]
 [connection signal="start_end_of_game_sequence" from="Player" to="." method="_on_player_start_end_of_game_sequence"]

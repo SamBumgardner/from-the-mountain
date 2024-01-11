@@ -6,3 +6,4 @@
 modulate = Color(0.827451, 0.827451, 0.823529, 1)
 color = Color(0.635294, 0.654902, 0.666667, 1)
 tile_text = "P"
+movement_in_cost = 10.0

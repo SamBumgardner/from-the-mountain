@@ -12,9 +12,19 @@ func _ready():
 	$label.text = tile_text
 
 func set_remaining(fraction_remaining:float) -> void:
+	amount_remaining = fraction_remaining
 	material.set_shader_parameter("remaining", fraction_remaining)
 
 func set_color(new_color:Color) -> void:
 	modulate = new_color
 	material.set_shader_parameter("mod_color", new_color)
 
+func can_harvest() -> bool:
+	return amount_remaining > 0
+
+func harvest() -> float:
+	# should return something more complex in the future - inner class for harvest reward?
+	var harvested_amount = amount_remaining
+	set_remaining(0)
+	return harvested_amount
+	
