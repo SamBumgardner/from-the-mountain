@@ -17,9 +17,10 @@ var current_energy : float = MAX_ENERGY :
 
 var _game_ending : bool = false
 
+var inventory : Inventory = Inventory.new()
+
 func _ready():
 	current_coords = world_map.local_to_map(world_map.to_local(global_position))
-	pass
 
 func restart():
 	_game_ending = false
@@ -43,18 +44,28 @@ func move(distance : Vector2i):
 			current_coords = current_coords + distance
 			#resolve any additional results of moving into tile.
 		
-		if current_energy <= 0 and not _game_ending:
-			print("character is exhuasted! Start end-of-game process now")
-			start_end_of_game_sequence.emit("energy")
-			$GameEndDelay.start()
-			_game_ending = true
+		_check_end_of_game()
 
 func harvest():
-	if current_tile != null && current_tile.can_harvest:
-		var harvest_results = current_tile.harvest()
-		print(harvest_results)
+	if current_tile == null:
+		current_tile = world_map.get_tile(current_coords)
+	if current_tile.can_harvest:
+		var harvest_results:Array[Inventory.InvResource] = current_tile.harvest()
+		inventory.update_resource_count(harvest_results)
+		print(inventory.get_resource_amounts())
+		
+		current_energy -= current_tile.harvest_cost
+		
+		_check_end_of_game()
 	else:
 		pass # play meep-merp sound
+
+func _check_end_of_game():
+	if current_energy <= 0 and not _game_ending:
+		print("character is exhuasted! Start end-of-game process now")
+		start_end_of_game_sequence.emit("energy")
+		$GameEndDelay.start()
+		_game_ending = true
 
 func _input(event):
 	if !_game_ending:
