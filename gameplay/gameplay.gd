@@ -22,7 +22,7 @@ func _on_character_finished(finished_character:Player):
 	legacy_state = legacy_state_preload.instantiate()
 	legacy_state.legacy_screen_finished.connect(_on_legacy_screen_finished, CONNECT_ONE_SHOT)
 	legacy_state.ready.connect(_on_legacy_screen_ready, CONNECT_ONE_SHOT)
-	add_child(legacy_state)
+	$CanvasLayer.add_child(legacy_state)
 
 func _on_legacy_screen_ready():
 	pass

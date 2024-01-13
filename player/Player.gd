@@ -49,7 +49,7 @@ func move(distance : Vector2i):
 func harvest():
 	if current_tile == null:
 		current_tile = world_map.get_tile(current_coords)
-	if current_tile.can_harvest:
+	if current_tile.can_harvest():
 		var harvest_results:Array[Inventory.InvResource] = current_tile.harvest()
 		inventory.update_resource_count(harvest_results)
 		print(inventory.get_resource_amounts())
