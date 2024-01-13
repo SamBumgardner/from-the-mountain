@@ -4,6 +4,8 @@ class_name Tile extends Sprite2D
 @export var amount_remaining : float = 1
 @export var tile_text : String = ""
 @export var movement_in_cost : float = 20.0
+@export var harvest_cost : float = 5.0
+@export var resource_yield : Array[int] = [0, 0, 0]
 
 func _ready():
 	material = material.duplicate()
@@ -22,9 +24,17 @@ func set_color(new_color:Color) -> void:
 func can_harvest() -> bool:
 	return amount_remaining > 0
 
-func harvest() -> float:
+func harvest() -> Array[Inventory.InvResource]:
 	# should return something more complex in the future - inner class for harvest reward?
 	var harvested_amount = amount_remaining
 	set_remaining(0)
-	return harvested_amount
+	
+	var harvest_results:Array[Inventory.InvResource] = []
+	for i in resource_yield.size():
+		var harvest_result = Inventory.InvResource.new()
+		harvest_result.type = i
+		harvest_result.amount = resource_yield[i]
+		harvest_results.append(harvest_result)
+		
+	return harvest_results
 	
