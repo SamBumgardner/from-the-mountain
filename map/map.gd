@@ -12,6 +12,7 @@ func _on_new_generation_begins():
 	# do all of the logic needed to reset & progress the world
 	$Player.force_change_position(Vector2i(2,2))
 	$Player.restart()
+	$TileMap.new_generation_begins.emit()
 	pass
 
 func _on_player_character_finished(this_player):

@@ -5,6 +5,7 @@
 [node name="Tile" instance=ExtResource("1_bs7d7")]
 modulate = Color(0.419608, 0.941176, 0.517647, 1)
 color = Color(0.419608, 0.941176, 0.517647, 1)
+generation_recovery = 1.0
 tile_text = "m"
 movement_in_cost = 1.0
 resource_yield = Array[int]([0, 0, 1])
